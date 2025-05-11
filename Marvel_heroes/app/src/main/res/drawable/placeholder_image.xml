@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Placeholder image drawable
+  Used when images are loading or unavailable
+  Simple gray rectangle with rounded corners
+-->
+<shape 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Light gray color for the placeholder -->
+    <solid android:color="#CCCCCC" />
+    <!-- Slightly rounded corners -->
+    <corners android:radius="4dp" />
+</shape>

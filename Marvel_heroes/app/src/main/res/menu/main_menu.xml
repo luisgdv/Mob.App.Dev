@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Main options menu
+  Provides search, favorites access, and sorting options
+-->
+<menu 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <!-- Search action - always visible in action bar -->
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView"/>
+    
+    <!-- Favorites action - visible if room available -->
+    <item
+        android:id="@+id/action_favorites"
+        android:icon="@drawable/ic_favorite"
+        android:title="Favorites"
+        app:showAsAction="ifRoom"/>
+
+    <!-- Sort submenu - accessible from overflow menu -->
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@drawable/ic_sort"
+        android:title="Sort"
+        app:showAsAction="never">
+        
+        <menu>
+            <!-- Sort options -->
+            <item
+                android:id="@+id/sort_name_asc"
+                android:title="Name (A-Z)"/>
+            <item
+                android:id="@+id/sort_name_desc"
+                android:title="Name (Z-A)"/>
+            <item
+                android:id="@+id/sort_comics"
+                android:title="Comics Count"/>
+        </menu>
+    </item>
+</menu>

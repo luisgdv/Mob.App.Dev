@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Error image placeholder drawable
+  Used when image loading fails to provide visual feedback to the user
+  The red color indicates an error state
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FF5252" /> <!-- Error red color -->
+    <corners android:radius="4dp" /> <!-- Rounded corners for better appearance -->
+</shape>

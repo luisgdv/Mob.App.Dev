@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filter Heroes"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sort by Name"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp" />
+
+    <RadioGroup
+        android:id="@+id/nameRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/nameAscending"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="A to Z" />
+
+        <RadioButton
+            android:id="@+id/nameDescending"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Z to A" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sort by Intelligence"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp" />
+
+    <RadioGroup
+        android:id="@+id/intelligenceRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/intelligenceAscending"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0 to 100" />
+
+        <RadioButton
+            android:id="@+id/intelligenceDescending"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="100 to 0" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sort by Strength"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp" />
+
+    <RadioGroup
+        android:id="@+id/strengthRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/strengthAscending"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0 to 100" />
+
+        <RadioButton
+            android:id="@+id/strengthDescending"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="100 to 0" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/applyFilterButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply Filter"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>
