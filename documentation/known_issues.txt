@@ -1,0 +1,32 @@
+# Marvel Heroes App - Known Issues
+
+## 1. Favorites Issues
+- whole system for favorite heroes is implemented, however I was unable of finding the reason why 
+  it is not displaying the favorited heroes on the favorite section.
+  It does store them even between sessions, but was unable to make it show.
+  
+
+
+## 1. API Limitations
+- API Rate Limiting: The Marvel API has rate limits that may affect frequent usage
+  - Current mitigation: Caching to reduce API calls
+  - Error handling for rate limit responses
+- Superhero API occasionally returns incomplete data for some heroes
+
+## 3. UI/UX Issues
+- Filter Persistence: Filters are not saved between app sessions
+  - on the other hand it may be more comfortable for the user
+- English-only interface
+  - Future enhancement: Add support for multiple languages
+
+## 5. Error Handling
+- Generic error messages in some cases
+  - Future fix: More specific error messages based on error type
+- Network errors could have better recovery mechanisms
+  - Future enhancement: Implement retry logic with exponential backoff
+
+## 6. Device Compatibility
+- Layout  on only one screen
+  - Future fix: Improve responsive design for various screen sizes
+
+

@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
+import com.example.marvel_heroes.SortOption
 
 /**
  * ViewModel for managing Marvel hero data
@@ -230,5 +231,43 @@ class MarvelViewModel(private val database: HeroDatabase) : ViewModel() {
             }
             Log.d("MarvelViewModel", "Filtered heroes by strength 100-0")
         }
+    }
+    
+    /**
+     * Applies the selected sort option to filter the heroes list
+     * @param sortOption The sort option to apply
+     */
+    fun applySortOption(sortOption: SortOption) {
+        val currentHeroes = _heroes.value ?: return
+        
+        val sortedHeroes = when (sortOption) {
+            SortOption.NAME_ASC -> currentHeroes.sortedBy { it.name }
+            SortOption.NAME_DESC -> currentHeroes.sortedByDescending { it.name }
+            SortOption.INTELLIGENCE_ASC -> currentHeroes.sortedBy { 
+                // Extract intelligence value from description
+                val match = "Intelligence: (\\d+)".toRegex().find(it.description)
+                match?.groupValues?.get(1)?.toIntOrNull() ?: 0
+            }
+            SortOption.INTELLIGENCE_DESC -> currentHeroes.sortedByDescending { 
+                // Extract intelligence value from description
+                val match = "Intelligence: (\\d+)".toRegex().find(it.description)
+                match?.groupValues?.get(1)?.toIntOrNull() ?: 0
+            }
+            SortOption.STRENGTH_ASC -> currentHeroes.sortedBy { 
+                // Extract strength value from description
+                val match = "Strength: (\\d+)".toRegex().find(it.description)
+                match?.groupValues?.get(1)?.toIntOrNull() ?: 0
+            }
+            SortOption.STRENGTH_DESC -> currentHeroes.sortedByDescending { 
+                // Extract strength value from description
+                val match = "Strength: (\\d+)".toRegex().find(it.description)
+                match?.groupValues?.get(1)?.toIntOrNull() ?: 0
+            }
+        }
+        
+        // Update the LiveData with the sorted list
+        _heroes.value = sortedHeroes
+        
+        Log.d("MarvelViewModel", "Applied sort option: $sortOption")
     }
 }

@@ -1,0 +1,60 @@
+# Marvel Heroes App - Key Implementation Decisions
+
+## 1. Architecture
+- MVVM (Model-View-ViewModel) architecture pattern for clean separation of code segments
+- LiveData for observable data patterns and lifecycle awareness
+- Coroutines for asynchronous operations and background processing
+
+## 2. Data Sources
+- Primary API: Superhero API (cdn.jsdelivr.net/gh/akabab/superhero-api)
+  - Provides comprehensive hero data including power stats and images
+  - Filtered to only include Marvel Comics heroes
+- Secondary API: Marvel Comics API (gateway.marvel.com)
+  - Available as a backup but not currently used in the main implementation because of the problems with the api, due to this
+    could reach all comic appareances. So i chose to show first comic appearence
+  
+
+## 3. Local Storage
+- Room Database for persistent storage of hero data
+  - Preserves favorite status across app restarts
+  - Enables offline access to previously loaded heroes
+- Entity design with @Parcelize for efficient data transfer between components
+
+## 4. UI Design
+- Grid Layout: Heroes displayed in a 2-column grid 
+- Material Design components for consistent UI experience
+- Bottom Navigation for easy switching between heroes list and favorites
+- Pull-to-Refresh for simple data reloading mechanism & filter reset
+- Dialog fragments for hero details to maintain context
+
+## 5. Image Loading
+- Glide Library for efficient image loading and caching
+  - Handles placeholder and error images
+  - Optimizes memory usage for large image lists
+
+## 6. Networking
+- Retrofit with OkHttp for API communication
+  - Type-safe API calls
+  - Interceptors for logging and authentication
+- Gson for JSON parsing
+- Error handling with appropriate user feedback
+
+## 7. Filtering and Sorting
+- Multiple sort options: name A-Z Z-A, intelligence min - max, strength min - max 
+  - Both ascending and descending options
+  - Implemented in the ViewModel for separation of concerns
+
+## 8. Search Functionality
+- Real-time filtering as user types
+- Minimum character threshold (3) to avoid excessive filtering
+
+## 9. Favorites System
+- Toggle mechanism for adding/removing favorites
+- Dedicated favorites view with empty state handling
+- Database persistence for favorites
+
+## 10. Performance Considerations
+- Pagination ready architecture (though not fully implemented)
+- Efficient RecyclerView with view holder pattern
+- Background processing for database operations
+- Image caching to reduce network usage

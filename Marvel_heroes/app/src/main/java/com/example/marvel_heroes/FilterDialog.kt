@@ -42,36 +42,48 @@ class FilterDialog(private val viewModel: MarvelViewModel) : DialogFragment() {
         val nameRadioGroup = view.findViewById<RadioGroup>(R.id.nameRadioGroup)
         val intelligenceRadioGroup = view.findViewById<RadioGroup>(R.id.intelligenceRadioGroup)
         val strengthRadioGroup = view.findViewById<RadioGroup>(R.id.strengthRadioGroup)
+        // Find the apply filter button
         val applyFilterButton = view.findViewById<Button>(R.id.applyFilterButton)
-        
-        // Set click listener for the apply button
         applyFilterButton.setOnClickListener {
-            // Apply name filter based on selected radio button
-            when (nameRadioGroup.checkedRadioButtonId) {
-                R.id.nameAscending -> viewModel.filterHeroesByNameAscending()
-                R.id.nameDescending -> viewModel.filterHeroesByNameDescending()
-            }
-            
-            // Apply intelligence filter based on selected radio button
-            when (intelligenceRadioGroup.checkedRadioButtonId) {
-                R.id.intelligenceAscending -> viewModel.filterHeroesByIntelligenceAscending()
-                R.id.intelligenceDescending -> viewModel.filterHeroesByIntelligenceDescending()
-            }
-            
-            // Apply strength filter based on selected radio button
-            when (strengthRadioGroup.checkedRadioButtonId) {
-                R.id.strengthAscending -> viewModel.filterHeroesByStrengthAscending()
-                R.id.strengthDescending -> viewModel.filterHeroesByStrengthDescending()
-            }
-            
-            // Close the dialog after applying filters
+            applyFilters()
             dismiss()
         }
         
-        // Add cancel button functionality if it exists in the layout
-        view.findViewById<Button>(R.id.cancelFilterButton)?.setOnClickListener {
+        // Find the cancel button
+        val cancelFilterButton = view.findViewById<Button>(R.id.cancelFilterButton)
+        cancelFilterButton.setOnClickListener {
             dismiss()
         }
+    }
+    
+    /**
+     * Applies the selected filters to the ViewModel
+     */
+    private fun applyFilters() {
+        // Get the selected radio buttons
+        val selectedNameOption = when {
+            view?.findViewById<RadioButton>(R.id.nameAscending)?.isChecked == true -> SortOption.NAME_ASC
+            view?.findViewById<RadioButton>(R.id.nameDescending)?.isChecked == true -> SortOption.NAME_DESC
+            else -> null
+        }
+        
+        val selectedIntelligenceOption = when {
+            view?.findViewById<RadioButton>(R.id.intelligenceAscending)?.isChecked == true -> SortOption.INTELLIGENCE_ASC
+            view?.findViewById<RadioButton>(R.id.intelligenceDescending)?.isChecked == true -> SortOption.INTELLIGENCE_DESC
+            else -> null
+        }
+        
+        val selectedStrengthOption = when {
+            view?.findViewById<RadioButton>(R.id.strengthAscending)?.isChecked == true -> SortOption.STRENGTH_ASC
+            view?.findViewById<RadioButton>(R.id.strengthDescending)?.isChecked == true -> SortOption.STRENGTH_DESC
+            else -> null
+        }
+        
+        // Apply the first non-null sort option
+        val sortOption = selectedNameOption ?: selectedIntelligenceOption ?: selectedStrengthOption
+        
+        // Apply the sort option to the ViewModel
+        sortOption?.let { viewModel.applySortOption(it) }
     }
     
     companion object {
@@ -84,4 +96,16 @@ class FilterDialog(private val viewModel: MarvelViewModel) : DialogFragment() {
             return FilterDialog(viewModel)
         }
     }
+}
+
+/**
+ * Enum representing different sort options for heroes
+ */
+enum class SortOption {
+    NAME_ASC,
+    NAME_DESC,
+    INTELLIGENCE_ASC,
+    INTELLIGENCE_DESC,
+    STRENGTH_ASC,
+    STRENGTH_DESC
 }
